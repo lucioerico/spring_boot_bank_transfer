@@ -1,5 +1,6 @@
 package itau.canais.api.controller;
 
+import itau.canais.api.dto.DadosAtualizacaoCliente;
 import itau.canais.api.dto.DadosDepositar;
 import itau.canais.api.dto.DadosConta;
 import itau.canais.api.dto.DadosListagemContas;
@@ -7,10 +8,12 @@ import itau.canais.api.entities.Conta;
 import itau.canais.api.repositories.ContaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -33,10 +36,21 @@ public class ContasController {
 
     @PutMapping
     @Transactional
-    public void Depositar(@RequestBody @Valid DadosDepositar depositar){
-        var conta = repository.buscarContaByAgenciaConta(String.valueOf(depositar.agencia()), depositar.nconta());
-        conta.depositar(depositar);
-        }
+    public void depositar(@RequestBody @Valid DadosDepositar dados){
+        var conta = repository.buscarContaByAgenciaConta(String.valueOf(dados.agencia()), dados.nconta());
+        conta.depositar(dados);
+    }
+
+}
+
+//    @PutMapping
+//    @Transactional
+//    public void depositar(@RequestBody @Valid DadosDepositar dados){
+//        Conta conta = repository.buscarContaByAgenciaConta(String.valueOf(dados.agencia()), dados.nconta());
+//        conta.depositar(dados);
+//    }
+
+
 
 
 //
@@ -62,4 +76,4 @@ public class ContasController {
 //    }
 //}
 
-}
+
