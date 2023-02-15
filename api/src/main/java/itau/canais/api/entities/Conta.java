@@ -1,5 +1,6 @@
 package itau.canais.api.entities;
 import itau.canais.api.dto.DadosConta;
+import itau.canais.api.dto.DadosDepositar;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,5 +34,12 @@ public class Conta {
     }
 
     public Conta(String agencia, String nconta, BigDecimal saldo, String cpf, Cliente cliente) {
+    }
+
+    public Conta(String agencia, String nconta, Float saldo, String cpf) {
+    }
+
+    public void depositar(DadosDepositar depositar) {
+            this.saldo = depositar.saldo();
     }
 }
