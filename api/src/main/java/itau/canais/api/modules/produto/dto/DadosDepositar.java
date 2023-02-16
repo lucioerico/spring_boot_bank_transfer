@@ -1,4 +1,4 @@
-package itau.canais.api.modules.dto;
+package itau.canais.api.modules.produto.dto;
 
 import java.math.BigDecimal;
 
