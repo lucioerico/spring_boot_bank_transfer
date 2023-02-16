@@ -1,7 +1,7 @@
-package itau.canais.api.modules.entities;
+package itau.canais.api.modules.produto.entities;
 
-import itau.canais.api.modules.dto.DadosConta;
-import itau.canais.api.modules.dto.DadosDepositar;
+import itau.canais.api.modules.produto.dto.DadosConta;
+import itau.canais.api.modules.produto.dto.DadosDepositar;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

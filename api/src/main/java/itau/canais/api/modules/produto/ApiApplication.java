@@ -1,4 +1,4 @@
-package itau.canais.api.modules;
+package itau.canais.api.modules.produto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
