@@ -1,6 +1,6 @@
-package itau.canais.api.modules.repositories;
+package itau.canais.api.modules.produto.repositories;
 
-import itau.canais.api.modules.entities.Cliente;
+import itau.canais.api.modules.produto.entities.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

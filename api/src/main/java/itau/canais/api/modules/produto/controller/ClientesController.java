@@ -1,9 +1,9 @@
-package itau.canais.api.modules.controller;
+package itau.canais.api.modules.produto.controller;
 
-import itau.canais.api.modules.dto.DadosAtualizacaoCliente;
-import itau.canais.api.modules.dto.DadosCliente;
-import itau.canais.api.modules.dto.DadosListagemClientes;
-import itau.canais.api.modules.services.ClienteService;
+import itau.canais.api.modules.produto.dto.DadosAtualizacaoCliente;
+import itau.canais.api.modules.produto.dto.DadosCliente;
+import itau.canais.api.modules.produto.dto.DadosListagemClientes;
+import itau.canais.api.modules.produto.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

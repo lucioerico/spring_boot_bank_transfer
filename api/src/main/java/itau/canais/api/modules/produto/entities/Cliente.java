@@ -1,7 +1,7 @@
-package itau.canais.api.modules.entities;
+package itau.canais.api.modules.produto.entities;
 
-import itau.canais.api.modules.dto.DadosAtualizacaoCliente;
-import itau.canais.api.modules.dto.DadosCliente;
+import itau.canais.api.modules.produto.dto.DadosAtualizacaoCliente;
+import itau.canais.api.modules.produto.dto.DadosCliente;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;

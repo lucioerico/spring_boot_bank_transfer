@@ -1,9 +1,9 @@
-package itau.canais.api.modules.controller;
+package itau.canais.api.modules.produto.controller;
 
-import itau.canais.api.modules.dto.DadosConta;
-import itau.canais.api.modules.dto.DadosDepositar;
-import itau.canais.api.modules.dto.DadosListagemContas;
-import itau.canais.api.modules.services.ContaService;
+import itau.canais.api.modules.produto.dto.DadosConta;
+import itau.canais.api.modules.produto.dto.DadosDepositar;
+import itau.canais.api.modules.produto.dto.DadosListagemContas;
+import itau.canais.api.modules.produto.services.ContaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

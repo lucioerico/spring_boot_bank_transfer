@@ -11,7 +11,7 @@ id bigint not null auto_increment,
 agencia varchar(100) not null,
 nconta varchar(100) not null,
 saldo decimal(18, 4) not null,
-cpf_cliente varchar(11) not null,
+cpf varchar(11) not null,
 primary key(id),
-foreign key(cpf_cliente) references clientes(cpf)
+foreign key(cpf) references clientes(cpf)
 );
