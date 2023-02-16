@@ -1,14 +1,9 @@
-package itau.canais.api.dto;
+package itau.canais.api.modules.dto;
 
-import itau.canais.api.entities.Conta;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
-
-import java.util.List;
 
 public record DadosCliente(
         @NotBlank(message = "Nome Obrigatório")

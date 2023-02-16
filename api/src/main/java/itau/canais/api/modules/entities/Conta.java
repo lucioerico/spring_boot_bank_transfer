@@ -1,9 +1,12 @@
-package itau.canais.api.entities;
-import itau.canais.api.dto.DadosAtualizacaoCliente;
-import itau.canais.api.dto.DadosConta;
-import itau.canais.api.dto.DadosDepositar;
+package itau.canais.api.modules.entities;
+
+import itau.canais.api.modules.dto.DadosConta;
+import itau.canais.api.modules.dto.DadosDepositar;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -42,11 +45,5 @@ import java.math.BigDecimal;
             public void depositar(DadosDepositar dados) {
                 if(dados.saldo() != null){
                     this.saldo = this.saldo.add(dados.saldo());                }
-
-//    public void depositar(Conta dados) {
-//        this.saldo = this.saldo.add(dados.getSaldo());
-////    }
-//    public void depositar(Conta conta) {
-//        this.saldo = this.saldo.add(conta.getSaldo());
-//}
-}}
+            }
+}

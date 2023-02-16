@@ -1,6 +1,6 @@
-package itau.canais.api.dto;
+package itau.canais.api.modules.dto;
 
-import itau.canais.api.entities.Conta;
+import itau.canais.api.modules.entities.Conta;
 
 import java.math.BigDecimal;
 

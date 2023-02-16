@@ -1,13 +1,9 @@
-package itau.canais.api.repositories;
+package itau.canais.api.modules.repositories;
 
-import itau.canais.api.entities.Cliente;
-import itau.canais.api.entities.Conta;
-import org.hibernate.ObjectNotFoundException;
+import itau.canais.api.modules.entities.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente, String> {
 
