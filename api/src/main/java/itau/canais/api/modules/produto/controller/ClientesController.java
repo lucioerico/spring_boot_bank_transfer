@@ -3,11 +3,14 @@ package itau.canais.api.modules.produto.controller;
 import itau.canais.api.modules.produto.dto.DadosAtualizacaoCliente;
 import itau.canais.api.modules.produto.dto.DadosCliente;
 import itau.canais.api.modules.produto.dto.DadosListagemClientes;
+import itau.canais.api.modules.produto.entities.Cliente;
 import itau.canais.api.modules.produto.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -20,8 +23,11 @@ public class ClientesController {
 
     @PostMapping
     @Transactional
-    public void cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente){
+    public ResponseEntity cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente,  UriComponentsBuilder uriBuilder){
+        var cliente = new Cliente(dadosCliente);
         clienteService.cadastrarCliente(dadosCliente);
+        var uri =uriBuilder.path("/clientes/{id}").buildAndExpand(cliente.getCpf()).toUri();
+        return ResponseEntity.created(uri).body("Cadastrado com sucesso");
     }
 
     @GetMapping
@@ -31,7 +37,9 @@ public class ClientesController {
 
     @PutMapping
     @Transactional
-    public void atualizarCliente(@RequestBody @Valid DadosAtualizacaoCliente dados){
+    public ResponseEntity atualizarCliente(@RequestBody @Valid DadosAtualizacaoCliente dados){
         clienteService.atualizarCliente(dados);
+        return ResponseEntity.ok("Atualizado com sucesso");
+
     }
 }
