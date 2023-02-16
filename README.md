@@ -44,7 +44,7 @@ mvn clean install
 
 <p>Este projeto utiliza o framework Spring Security, o login padrão pode ser feito com os seguintes dados:</p>
 
-<p>USER: user</p>
-<p>PASSWORD: Poderá ser localizado no terminal ao executar o spring-boog com a linha de texto 'Using generated security password: ' </p>
+<p>USER: itau</p>
+<p>PASSWORD: itau</p>
 
 <!-- Fim do README.md -->
