@@ -1,6 +1,4 @@
-package itau.canais.api.dto;
-
-import jakarta.validation.constraints.NotNull;
+package itau.canais.api.modules.dto;
 
 import java.math.BigDecimal;
 

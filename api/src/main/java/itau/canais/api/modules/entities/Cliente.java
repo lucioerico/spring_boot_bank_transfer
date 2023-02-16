@@ -1,10 +1,15 @@
-package itau.canais.api.entities;
+package itau.canais.api.modules.entities;
 
-import ch.qos.logback.classic.Logger;
-import itau.canais.api.dto.DadosAtualizacaoCliente;
-import itau.canais.api.dto.DadosCliente;
-import jakarta.persistence.*;
-import lombok.*;
+import itau.canais.api.modules.dto.DadosAtualizacaoCliente;
+import itau.canais.api.modules.dto.DadosCliente;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 

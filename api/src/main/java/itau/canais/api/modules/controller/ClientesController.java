@@ -1,17 +1,14 @@
-package itau.canais.api.controller;
+package itau.canais.api.modules.controller;
 
-import itau.canais.api.dto.DadosAtualizacaoCliente;
-import itau.canais.api.dto.DadosCliente;
-import itau.canais.api.dto.DadosListagemClientes;
-import itau.canais.api.entities.Cliente;
-import itau.canais.api.repositories.ClienteRepository;
+import itau.canais.api.modules.dto.DadosAtualizacaoCliente;
+import itau.canais.api.modules.dto.DadosCliente;
+import itau.canais.api.modules.dto.DadosListagemClientes;
+import itau.canais.api.modules.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -19,23 +16,22 @@ import java.util.List;
 public class ClientesController {
 
     @Autowired
-    private ClienteRepository repository;
+    private ClienteService clienteService;
 
     @PostMapping
     @Transactional
     public void cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente){
-        repository.save(new Cliente(dadosCliente));
+        clienteService.cadastrarCliente(dadosCliente);
     }
 
     @GetMapping
     public List<DadosListagemClientes> listar(){
-        return repository.findAll().stream().map(DadosListagemClientes::new).toList();
+        return clienteService.listarClientes();
     }
 
     @PutMapping
     @Transactional
     public void atualizarCliente(@RequestBody @Valid DadosAtualizacaoCliente dados){
-        var cliente = repository.buscarPorCpf(String.valueOf(dados.cpf()));
-        cliente.atualizarInformacoes(dados);
+        clienteService.atualizarCliente(dados);
     }
 }

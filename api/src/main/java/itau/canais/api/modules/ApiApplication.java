@@ -1,8 +1,5 @@
-package itau.canais.api;
+package itau.canais.api.modules;
 
-import itau.canais.api.entities.Cliente;
-import itau.canais.api.entities.Conta;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

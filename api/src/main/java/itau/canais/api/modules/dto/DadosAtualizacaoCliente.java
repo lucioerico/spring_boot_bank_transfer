@@ -1,4 +1,4 @@
-package itau.canais.api.dto;
+package itau.canais.api.modules.dto;
 
 import jakarta.validation.constraints.NotNull;
 
