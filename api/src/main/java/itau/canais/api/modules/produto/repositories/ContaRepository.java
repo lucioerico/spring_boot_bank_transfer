@@ -1,13 +1,10 @@
-package itau.canais.api.modules.repositories;
+package itau.canais.api.modules.produto.repositories;
 
-import itau.canais.api.modules.dto.DadosConta;
-import itau.canais.api.modules.entities.Conta;
+import itau.canais.api.modules.produto.entities.Conta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.math.BigDecimal;
 
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, String> {

@@ -1,6 +1,6 @@
-package itau.canais.api.modules.dto;
+package itau.canais.api.modules.produto.dto;
 
-import itau.canais.api.modules.entities.Cliente;
+import itau.canais.api.modules.produto.entities.Cliente;
 
 public record DadosListagemClientes(
         String nome,

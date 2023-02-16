@@ -1,10 +1,10 @@
-package itau.canais.api.modules.services;
+package itau.canais.api.modules.produto.services;
 
-import itau.canais.api.modules.dto.DadosAtualizacaoCliente;
-import itau.canais.api.modules.dto.DadosCliente;
-import itau.canais.api.modules.dto.DadosListagemClientes;
-import itau.canais.api.modules.entities.Cliente;
-import itau.canais.api.modules.repositories.ClienteRepository;
+import itau.canais.api.modules.produto.dto.DadosAtualizacaoCliente;
+import itau.canais.api.modules.produto.dto.DadosCliente;
+import itau.canais.api.modules.produto.dto.DadosListagemClientes;
+import itau.canais.api.modules.produto.entities.Cliente;
+import itau.canais.api.modules.produto.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
