@@ -27,7 +27,7 @@ public class ClientesController {
         var cliente = new Cliente(dadosCliente);
         clienteService.cadastrarCliente(dadosCliente);
         var uri =uriBuilder.path("/clientes/{id}").buildAndExpand(cliente.getCpf()).toUri();
-        return ResponseEntity.cregit puated(uri).body("Cadastrado com sucesso");
+        return ResponseEntity.created(uri).body("Cadastrado com sucesso");
     }
 
     @GetMapping
