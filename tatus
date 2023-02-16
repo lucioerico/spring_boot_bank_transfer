@@ -1,0 +1,17 @@
+[33mcommit ab0e286be7d8fc27d5ce1ed072194f3f37a76689[m[33m ([m[1;36mHEAD -> [m[1;32mservice[m[33m, [m[1;31morigin/testeIdConta[m[33m, [m[1;32mmain[m[33m)[m
+Author: Lúcio <luciomoriyama@gmail.com>
+Date:   Wed Feb 15 14:55:23 2023 -0300
+
+    [BACKEND][CRUD - DEPOSITO SIMPLES CONTA]Criada a função que consegue adicionar saldo a conta
+
+[33mcommit fbe3968b650dc62215bf79cdef3fcf4517c4f067[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Lúcio <luciomoriyama@gmail.com>
+Date:   Wed Feb 15 11:17:37 2023 -0300
+
+    [BACKEND][CRUD]Criado função para atualizar cliente
+
+[33mcommit 891a3405928b9ea08fb07c598c9087a5fe22013f[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: Lúcio <luciomoriyama@gmail.com>
+Date:   Wed Feb 15 08:52:24 2023 -0300
+
+    [BACKEND][ESTRUTURA]Finalizado a estrutura básica, para inicio do projeto
