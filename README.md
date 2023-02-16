@@ -40,8 +40,11 @@ mvn clean install
 
 <p>A aplicação estará disponível em <a href="http://localhost:8080">http://localhost:8080</a>.</p>
 
-<h2>Licença</h2>
+<h2>Login</h2>
 
-<p>Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para obter mais detalhes.</p>
+<p>Este projeto utiliza o framework Spring Security, o login padrão pode ser feito com os seguintes dados:</p>
+
+<p>USER: user</p>
+<p>PASSWORD: Poderá ser localizado no terminal ao executar o spring-boog com a linha de texto 'Using generated security password: ' </p>
 
 <!-- Fim do README.md -->
