@@ -42,10 +42,10 @@ mvn clean install
 
 <h2>Login</h2>
 
-<p>Este projeto utiliza o framework Spring Security, o login padrão pode ser feito com os seguintes dados:</p>
+<p>Este projeto utiliza o framework Spring Security, o login de teste pode ser feito com os seguintes dados:</p>
 
 <p>USER: itau</p>
-<p>PASSWORD: itau</p>
+<p>PASSWORD: Senh@023</p>
 
 <h2>Tecnologias</h2>
 
