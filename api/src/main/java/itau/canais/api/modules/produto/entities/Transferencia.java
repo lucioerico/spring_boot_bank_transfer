@@ -1,46 +1,29 @@
 package itau.canais.api.modules.produto.entities;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Table(name="transferencias")
-@Entity(name="Transferencia")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "transferencias")
+@Entity(name = "Transferencia")
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Transferencia {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    @ManyToOne
-    @JoinColumn(name = "conta_origem_agencia")
-    public Conta contaOrigem;
-    @ManyToOne
-    @JoinColumn(name = "conta_destino_agencia")
-    public Conta contaDestino;
-    public BigDecimal valor;
+    private long id;
+    private String agencia;
+    private String nconta;
+    private BigDecimal saldo;
+    private String cpf;
+    private BigDecimal valorTransferencia;
 
-
-    public Conta getContaDestino() {
-        return contaDestino;
-    }
-
-    public void setContaDestino(Conta contaDestino) {
-        this.contaDestino = contaDestino;
-    }
-
-    public Conta getContaOrigem() {
-        return contaOrigem;
-    }
-
-    public void setContaOrigem(Conta contaOrigem) {
-        this.contaOrigem = contaOrigem;
-    }
 }
