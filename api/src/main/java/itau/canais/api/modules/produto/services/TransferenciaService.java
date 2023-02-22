@@ -1,6 +1,5 @@
 package itau.canais.api.modules.produto.services;
 
-import itau.canais.api.modules.produto.dto.DadosDepositar;
 import itau.canais.api.modules.produto.dto.DadosTransferir;
 import itau.canais.api.modules.produto.dto.Operacao;
 import itau.canais.api.modules.produto.entities.Conta;
@@ -24,15 +23,11 @@ public class TransferenciaService {
         Conta contaDestino = contaRepository.buscarContaByAgenciaConta(String.valueOf(destino.agencia()), destino.nconta());
         Operacao operacao = origem.operacao();
         BigDecimal valorTransferencia = origem.valorTransferencia();
-        System.out.println("Operação ORIGEM: " + operacao);
 
-        // implementação pix, doc e ted
         verificarTipoTransferencia(operacao, valorTransferencia, contaOrigem, contaDestino, origem, destino);
-
     }
 
-    private void executaTransferencia(DadosTransferir origem, DadosTransferir destino, Conta contaOrigem, Conta contaDestino, BigDecimal valorTransferencia ) {
-
+    private void executaTransferencia(DadosTransferir origem, DadosTransferir destino, Conta contaOrigem, Conta contaDestino, BigDecimal valorTransferencia) {
         if (contaOrigem.getSaldo().compareTo(origem.valorTransferencia()) < 0) {
             throw new RuntimeException("Conta de origem não tem saldo suficiente.");
         }
@@ -44,22 +39,23 @@ public class TransferenciaService {
         contaDestino.transferir(destino, novoSaldoDestino);
         contaRepository.save(contaDestino);
     }
+
     private void verificarTipoTransferencia(Operacao operacao, BigDecimal valorTransferencia, Conta contaOrigem, Conta contaDestino, DadosTransferir origem, DadosTransferir destino) {
         if (operacao == Operacao.PIX) {
             if (valorTransferencia.compareTo(new BigDecimal("5000")) <= 0) {
-                executaTransferencia(origem, destino, contaOrigem, contaDestino, valorTransferencia );
+                executaTransferencia(origem, destino, contaOrigem, contaDestino, valorTransferencia);
             } else {
                 throw new RuntimeException("Valor máximo para transferência via PIX é de R$ 5.000");
             }
         } else if (operacao == Operacao.TED) {
             if (valorTransferencia.compareTo(new BigDecimal("5000")) > 0 && valorTransferencia.compareTo(new BigDecimal("10000")) <= 0) {
-                executaTransferencia(origem, destino, contaOrigem, contaDestino, valorTransferencia );
+                executaTransferencia(origem, destino, contaOrigem, contaDestino, valorTransferencia);
             } else {
                 throw new RuntimeException("Valor para transferência via TED deve ser entre R$ 5.001 e R$ 10.000");
             }
         } else if (operacao == Operacao.DOC) {
             if (valorTransferencia.compareTo(new BigDecimal("10000")) >= 0) {
-                executaTransferencia(origem, destino, contaOrigem, contaDestino, valorTransferencia );
+                executaTransferencia(origem, destino, contaOrigem, contaDestino, valorTransferencia);
             } else {
                 throw new RuntimeException("Valor mínimo para transferência via DOC é de R$ 10.000");
             }
