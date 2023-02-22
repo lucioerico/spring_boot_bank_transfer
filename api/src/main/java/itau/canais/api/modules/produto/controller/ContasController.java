@@ -37,6 +37,6 @@ public class ContasController {
     public ResponseEntity depositar(@RequestBody @Valid DadosDepositar dados){
         contaService.depositar(dados);
         return ResponseEntity.ok("Deposito Gerencial efetuado com sucesso");
-
     }
+
 }
