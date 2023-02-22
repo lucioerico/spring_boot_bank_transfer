@@ -9,9 +9,6 @@ INSERT INTO clientes (nome, cpf, senha) VALUES
 
 -- Inserção de dados na tabela contas
 INSERT INTO contas (agencia, nconta, saldo, cpf) VALUES
-<<<<<<< HEAD
-('001', '00001-1', 1000.00, '46354480028');
-=======
 ('001', '00002-1', 00.00, '40464605040'),
 ('002', '00003-1', 00.00, '80714091030'),
 ('003', '00004-1', 0, '47232921012'),
@@ -19,4 +16,4 @@ INSERT INTO contas (agencia, nconta, saldo, cpf) VALUES
 ('005', '00006-1', 0, '50759334080'),
 ('006', '00007-1', 0, '50759334080'),
 ('007', '00008-1', 00.00, '65813400060');
->>>>>>> develop
+
