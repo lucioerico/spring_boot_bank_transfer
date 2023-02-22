@@ -2,6 +2,7 @@ package itau.canais.api.modules.produto.entities;
 
 import itau.canais.api.modules.produto.dto.DadosConta;
 import itau.canais.api.modules.produto.dto.DadosDepositar;
+import itau.canais.api.modules.produto.dto.DadosTransferir;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -46,4 +47,9 @@ public class Conta {
         }
     }
 
+    public void transferir(DadosTransferir dados, BigDecimal novoSaldo) {
+            this.saldo = novoSaldo;
+    }
+
 }
+

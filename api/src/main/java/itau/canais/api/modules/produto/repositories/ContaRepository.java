@@ -14,12 +14,8 @@ public interface ContaRepository extends JpaRepository<Conta, String> {
     @Query("SELECT e FROM Conta e WHERE e.agencia = :agencia AND e.nconta = :nconta")
     public Conta buscarContaByAgenciaConta(@Param("agencia") String agencia, @Param("nconta") String nconta);
 
-
-    //    @Query("SELECT e.saldo FROM Conta e WHERE e.agencia = :agencia AND e.nconta = :nconta")
-//    public BigDecimal buscarSaldoByAgenciaConta(@Param("agencia") String agencia, @Param("nconta")String nconta);
     @Query("SELECT e FROM Conta e WHERE e.agencia = :agencia AND e.nconta = :nconta AND e.saldo = :saldo")
     public Conta buscarSaldoByAgenciaConta(@Param("agencia") String agencia, @Param("nconta") String nconta, @Param("saldo") BigDecimal saldo);
-
 
 }
 

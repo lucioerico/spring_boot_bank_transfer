@@ -33,6 +33,11 @@ public class ContaService {
         conta.depositar(dados);
     }
 
+    @Transactional
+    public void transferir(DadosDepositar dados){
+        var conta = repository.buscarContaByAgenciaConta(String.valueOf(dados.agencia()), dados.nconta());
+        conta.depositar(dados);
+    }
 
 }
 
