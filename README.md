@@ -42,9 +42,23 @@ mvn clean install
 
 <h2>Login</h2>
 
-<p>Este projeto utiliza o framework Spring Security, o login padrão pode ser feito com os seguintes dados:</p>
+<p>Este projeto utiliza o framework Spring Security, o login de teste pode ser feito com os seguintes dados:</p>
 
 <p>USER: itau</p>
-<p>PASSWORD: itau</p>
+<p>PASSWORD: Senh@023</p>
+
+<h2>Tecnologias</h2>
+
+<p>As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do projeto:</p>
+
+<ul>
+  <li>[Java 17](https://www.oracle.com/java)</li>
+  <li>[Spring Boot 3](https://spring.io/projects/spring-boot)</li>
+  <li>[Maven](https://maven.apache.org)</li>
+  <li>[Hibernate](https://hibernate.org)</li>
+  <li>[Flyway](https://flywaydb.org)</li>
+  <li>[Lombok](https://projectlombok.org)</li>
+  <li>[H2 Database Engine](https://www.h2database.com)</li>
+</ul>
 
 <!-- Fim do README.md -->
