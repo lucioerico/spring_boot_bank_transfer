@@ -5,6 +5,7 @@ import itau.canais.api.modules.produto.dto.DadosDepositar;
 import itau.canais.api.modules.produto.dto.DadosListagemContas;
 import itau.canais.api.modules.produto.entities.Conta;
 import itau.canais.api.modules.produto.repositories.ContaRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,11 @@ public class ContaService {
         var conta = repository.buscarContaByAgenciaConta(String.valueOf(dados.agencia()), dados.nconta());
         conta.depositar(dados);
         return ResponseEntity.ok("Transferencia efetuada com sucesso");
+    }
+
+    @Transactional
+    public List<Conta> listarContas() {
+        return repository.findAll();
     }
 
 }

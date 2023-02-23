@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("clientes")
+@RequestMapping("/clientes")
 public class ClientesController {
 
     @Autowired
@@ -41,5 +41,10 @@ public class ClientesController {
         clienteService.atualizarCliente(dados);
         return ResponseEntity.ok("Atualizado com sucesso");
 
+    }
+
+    @GetMapping("/listar")
+    public List<DadosListagemClientes> listarClientes() {
+        return clienteService.listarClientes();
     }
 }

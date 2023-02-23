@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("contas")
@@ -37,6 +38,14 @@ public class ContasController {
     public ResponseEntity depositar(@RequestBody @Valid DadosDepositar dados){
         contaService.depositar(dados);
         return ResponseEntity.ok("Deposito Gerencial efetuado com sucesso");
+    }
+
+    @GetMapping("/listar")
+    public List<DadosListagemContas> listarContas() {
+        return contaService.listarContas()
+                .stream()
+                .map(conta -> new DadosListagemContas(conta.getAgencia(), conta.getNconta(), conta.getCpf(), conta.getSaldo()))
+                .collect(Collectors.toList());
     }
 
 }
