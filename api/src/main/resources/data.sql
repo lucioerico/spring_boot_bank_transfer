@@ -17,3 +17,5 @@ INSERT INTO contas (agencia, nconta, saldo, cpf) VALUES
 ('006', '00007-1', 0, '50759334080'),
 ('007', '00008-1', 00.00, '65813400060');
 
+INSERT INTO usuarios (login, senha)
+SELECT cpf, 'Senh@023' FROM clientes;
