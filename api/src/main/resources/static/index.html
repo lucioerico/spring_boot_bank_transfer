@@ -74,8 +74,42 @@
     
     
 	</style>
+</head>
+<body>
+<button onclick="consultarClientes()">Consultar clientes</button>
+<button onclick="consultarContas()">Consultar contas</button>
+<button id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
+
+<!-- formulário de envio -->
+<form method="POST" name="formTransferenciaSaldo" action="/transferencias/transferir"
+      class="formulario" id="formTransferenciaSaldo">
+	<h2>Transferência de valor</h2><br>
+	<h3>Origem</h3><br>
+	<label>Agencia</label>
+	<input type="text" name="agenciaOrigem" placeholder="Digite o número da agência"/><br>
+	<label>Conta</label>
+	<input type="text" name="ncontaOrigem" placeholder="Digite o número da conta"/><br>
+	<label>CPF</label>
+	<input type="text" name="cpfOrigem" placeholder="Digite o numero do CPF"/><br>
+	<label>Valor</label>
+	<input type="number" name="valorTransferencia" placeholder="R$ 00.00"/><br>
+	<label>Operação</label>
+	<select name="operacao">
+		<option value="0">TED</option>
+		<option value="1">DOC</option>
+		<option value="2">PIX</option>
+	</select>
 	
-	<script>
+	<h3>Destino</h3><br>
+	<label>Agencia</label>
+	<input type="text" name="agenciaDestino" placeholder="Digite o número da agência"/><br>
+	<label>Conta</label>
+	<input type="text" name="ncontaDestino" placeholder="Digite o número da conta"/><br>
+	<label>CPF</label>
+	<input type="text" name="cpfDestino" placeholder="Digite o numero do CPF"/><br>
+	<input type="submit" value="Transferir"/>
+</form>
+<script>
 
         <!-- Consultar clientes -->
         function consultarClientes() {
@@ -124,87 +158,63 @@
         }
          <!-- Limpa conteúdo -->
 
-        <!-- Mostrar formulario -->
+     function mostrarFormulario() {
+  var formulario = document.getElementById('formTransferenciaSaldo');
+  formulario.style.display = 'block';
+}
 
-        function mostrarFormulario() {
-            var formulario = document.querySelector('.formulario');
-            formulario.style.display = 'block';
-            }
+function transferir() {
+  var formulario = document.getElementById('formTransferenciaSaldo');
+  var dados = new FormData(formulario);
 
-         <!-- obtenha o elemento do formulário pelo ID -->
-		const form = document.getElementById('formTransferenciaSaldo');
+  const jsonData = {
+    origem: {
+      cpf: dados.get('cpfOrigem'),
+      agencia: dados.get('agenciaOrigem'),
+      nconta: dados.get('ncontaOrigem'),
+      valorTransferencia: Number(dados.get('valorTransferencia')),
+      operacao: Number(dados.get('operacao'))
+    },
+    destino: {
+      cpf: dados.get('cpfDestino'),
+      agencia: dados.get('agenciaDestino'),
+      nconta: dados.get('ncontaDestino')
+    }
+  };
 
-		document.getElementById('formTransferenciaSaldo').addEventListener('click', (event) => {
-		event.preventDefault();
+  fetch('/transferencias/transferir', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(jsonData)
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Transferência realizada com sucesso!');
+    } else {
+      alert('Ocorreu um erro ao tentar realizar a transferência!');
+    }
+  })
+  .catch(error => {
+    console.error('Ocorreu um erro ao tentar realizar a transferência:', error);
+    alert('Ocorreu um erro ao tentar realizar a transferência!');
+  });
 
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+  formulario.reset();
+  formulario.style.display = 'none';
+}
 
-        const jsonData = {
-        origem: {
-        cpf: data.cpfOrigem,
-        agencia: data.agenciaOrigem,
-        nconta: data.ncontaOrigem,
-        valorTransferencia: Number(data.valorTransferencia),
-        operacao: Number(data.operacao)
-        },
-        destino: {
-        cpf: data.cpfDestino,
-        agencia: data.agenciaDestino,
-        nconta: data.ncontaDestino
-        }
-		};
+var botaoTransferir = document.getElementById('btnTransferir');
+botaoTransferir.addEventListener('click', mostrarFormulario);
 
-        // envie os dados como JSON para o servidor usando fetch API
-		fetch('/transferencia/transferir', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jsonData)
-		})
-		.then(response => response.json())
-		.then(data => console.log(data))
-		.catch(error => console.error(error));
-		});
+var formulario = document.getElementById('formTransferenciaSaldo');
+formulario.addEventListener('submit', function(event) {
+  event.preventDefault();
+  transferir();
+});
+
 	</script>
 
-</head>
-<body>
-<button onclick="consultarClientes()">Consultar clientes</button>
-<button onclick="consultarContas()">Consultar contas</button>
-<button id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
-
-<!-- formulário de envio -->
-<form method="POST" name="formTransferenciaSaldo" action="/transferencias/transferir"
-      class="formulario" id="formTransferenciaSaldo">
-	<h2>Transferência de valor</h2><br>
-	<h3>Origem</h3><br>
-	<label>Agencia</label>
-	<input type="text" name="agenciaOrigem" placeholder="Digite o número da agência"/><br>
-	<label>Conta</label>
-	<input type="text" name="ncontaOrigem" placeholder="Digite o número da conta"/><br>
-	<label>CPF</label>
-	<input type="text" name="cpfOrigem" placeholder="Digite o numero do CPF"/><br>
-	<label>Valor</label>
-	<input type="number" name="valorTransferencia" placeholder="R$ 00.00"/><br>
-	<label>Operação</label>
-	<select name="operacao">
-		<option value="0">TED</option>
-		<option value="1">DOC</option>
-		<option value="2">PIX</option>
-	</select>
-	
-	<h3>Destino</h3><br>
-	<label>Agencia</label>
-	<input type="text" name="agenciaDestino" placeholder="Digite o número da agência"/><br>
-	<label>Conta</label>
-	<input type="text" name="ncontaDestino" placeholder="Digite o número da conta"/><br>
-	<label>CPF</label>
-	<input type="text" name="cpfDestino" placeholder="Digite o numero do CPF"/><br>
-	<input type="submit" value="Transferir"/>
-</form>
-
-</div>
 </body>
 </html>
