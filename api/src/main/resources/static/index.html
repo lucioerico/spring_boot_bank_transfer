@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Página index</title>
+	<meta charset="UTF-8">
+	<!-- CSS do Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>Página index</title>
+	
+	<!-- Estilo Pagina -->
+	<style>
+    /* Modal CSS */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 
-    <!-- Estilo do modal -->
-    <style>
-        /* Modal CSS */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-        }
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+    }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-        }
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
 
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    /* Estilo da tabela */
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+    }
 
-        /* Estilo da tabela */
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto;
-        }
+    th, td {
+        text-align: center;
+        padding: 10px;
+    }
 
-        th, td {
-            text-align: center;
-            padding: 10px;
-        }
+    th {
+        background-color: #f2f2f2;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    /* Estilo Formulário Para não aparecer */
 
-    </style>
+    .formulario{
+        display: none;
+    }
 
-    <!-- Scripts -->
-    <script>
+    
+    
+	</style>
+	
+	<script>
+
+        <!-- Consultar clientes -->
         function consultarClientes() {
-            // Limpa o conteúdo da página
             limparConteudo();
 
             fetch('/clientes/listar')
@@ -84,9 +94,9 @@
                     document.body.appendChild(tabela);
                 });
         }
+        <!-- Consultar contas -->
 
         function consultarContas() {
-            // Limpa o conteúdo da página
             limparConteudo();
 
             fetch('/contas/listar')
@@ -103,6 +113,8 @@
                 });
         }
 
+        <!-- Limpa conteúdo -->
+
         function limparConteudo() {
             // Remove a tabela, se existir
             var tabela = document.querySelector('table');
@@ -110,38 +122,88 @@
                 tabela.remove();
             }
         }
+         <!-- Limpa conteúdo -->
 
+        <!-- Mostrar formulario -->
 
-    </script>
-    <script>
-    function cadastrarCliente() {
-    const novoCliente = {
-    nome: 'Teste1',
-    cpf: '46354480028',
-    senha: 'Senh@023'
-    };
+        function mostrarFormulario() {
+            var formulario = document.querySelector('.formulario');
+            formulario.style.display = 'block';
+            }
 
-    fetch('/clientes/cadastrar', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(novoCliente)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-    }
+         <!-- obtenha o elemento do formulário pelo ID -->
+		const form = document.getElementById('formTransferenciaSaldo');
 
+		document.getElementById('formTransferenciaSaldo').addEventListener('click', (event) => {
+		event.preventDefault();
 
-    </script>
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
 
-    </script>
+        const jsonData = {
+        origem: {
+        cpf: data.cpfOrigem,
+        agencia: data.agenciaOrigem,
+        nconta: data.ncontaOrigem,
+        valorTransferencia: Number(data.valorTransferencia),
+        operacao: Number(data.operacao)
+        },
+        destino: {
+        cpf: data.cpfDestino,
+        agencia: data.agenciaDestino,
+        nconta: data.ncontaDestino
+        }
+		};
+
+        // envie os dados como JSON para o servidor usando fetch API
+		fetch('/transferencia/transferir', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+		})
+		.then(response => response.json())
+		.then(data => console.log(data))
+		.catch(error => console.error(error));
+		});
+	</script>
+
 </head>
 <body>
 <button onclick="consultarClientes()">Consultar clientes</button>
 <button onclick="consultarContas()">Consultar contas</button>
+<button id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
 
+<!-- formulário de envio -->
+<form method="POST" name="formTransferenciaSaldo" action="/transferencias/transferir"
+      class="formulario" id="formTransferenciaSaldo">
+	<h2>Transferência de valor</h2><br>
+	<h3>Origem</h3><br>
+	<label>Agencia</label>
+	<input type="text" name="agenciaOrigem" placeholder="Digite o número da agência"/><br>
+	<label>Conta</label>
+	<input type="text" name="ncontaOrigem" placeholder="Digite o número da conta"/><br>
+	<label>CPF</label>
+	<input type="text" name="cpfOrigem" placeholder="Digite o numero do CPF"/><br>
+	<label>Valor</label>
+	<input type="number" name="valorTransferencia" placeholder="R$ 00.00"/><br>
+	<label>Operação</label>
+	<select name="operacao">
+		<option value="0">TED</option>
+		<option value="1">DOC</option>
+		<option value="2">PIX</option>
+	</select>
+	
+	<h3>Destino</h3><br>
+	<label>Agencia</label>
+	<input type="text" name="agenciaDestino" placeholder="Digite o número da agência"/><br>
+	<label>Conta</label>
+	<input type="text" name="ncontaDestino" placeholder="Digite o número da conta"/><br>
+	<label>CPF</label>
+	<input type="text" name="cpfDestino" placeholder="Digite o numero do CPF"/><br>
+	<input type="submit" value="Transferir"/>
+</form>
 
 </div>
 </body>

@@ -24,7 +24,7 @@ public class TransferenciaController {
     @Autowired
     ContaRepository contaRepository;
 
-    @PostMapping("/transferir")
+    @PostMapping(value ="/transferir", consumes={"application/xml", "application/json","aplication/x-ww-form-urlencoded"})
     @Transactional
     @CacheEvict (value = "serviceList", allEntries = true)
     public ResponseEntity<String> transferir(@RequestBody TransferenciaRequest request, UriComponentsBuilder uriBuilder) {
@@ -32,6 +32,7 @@ public class TransferenciaController {
         DadosTransferir destino = request.getDestino();
         try {
             transferenciaService.transferir(origem, destino);
+            //TODO colocar o contaService no lugar
             Conta contaOrigem = contaRepository.buscarContaByAgenciaConta(String.valueOf(origem.agencia()), origem.nconta());
             Conta contaDestino = contaRepository.buscarContaByAgenciaConta(String.valueOf(destino.agencia()), destino.nconta());
             String mensagem = String.format("Sua transferência foi realizada com sucesso!\nSaldo do emissor: R$ %s\nSaldo do receptor: R$ %s", contaOrigem.getSaldo(), contaDestino.getSaldo());
