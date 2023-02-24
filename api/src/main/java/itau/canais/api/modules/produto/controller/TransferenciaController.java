@@ -3,7 +3,7 @@ package itau.canais.api.modules.produto.controller;
 import itau.canais.api.modules.produto.dto.DadosTransferir;
 import itau.canais.api.modules.produto.dto.TransferenciaRequest;
 import itau.canais.api.modules.produto.entities.Conta;
-import itau.canais.api.modules.produto.exceptions.TransferenciaException;
+import itau.canais.api.modules.produto.config.exceptions.TransferenciaException;
 import itau.canais.api.modules.produto.repositories.ContaRepository;
 import itau.canais.api.modules.produto.services.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.RoundingMode;
