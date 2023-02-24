@@ -2,9 +2,13 @@ package itau.canais.api.modules.produto.controller;
 
 import itau.canais.api.modules.produto.dto.DadosTransferir;
 import itau.canais.api.modules.produto.dto.TransferenciaRequest;
+import itau.canais.api.modules.produto.entities.Conta;
+import itau.canais.api.modules.produto.exceptions.TransferenciaException;
+import itau.canais.api.modules.produto.repositories.ContaRepository;
 import itau.canais.api.modules.produto.services.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,22 +21,24 @@ public class TransferenciaController {
     @Autowired
     TransferenciaService transferenciaService;
 
+    @Autowired
+    ContaRepository contaRepository;
 
-    @PutMapping
+    @PostMapping("/transferir")
     @Transactional
     @CacheEvict (value = "serviceList", allEntries = true)
-    public void transferir(@RequestBody TransferenciaRequest request, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<String> transferir(@RequestBody TransferenciaRequest request, UriComponentsBuilder uriBuilder) {
         DadosTransferir origem = request.getOrigem();
         DadosTransferir destino = request.getDestino();
-        transferenciaService.transferir(origem, destino);
-
+        try {
+            transferenciaService.transferir(origem, destino);
+            Conta contaOrigem = contaRepository.buscarContaByAgenciaConta(String.valueOf(origem.agencia()), origem.nconta());
+            Conta contaDestino = contaRepository.buscarContaByAgenciaConta(String.valueOf(destino.agencia()), destino.nconta());
+            String mensagem = String.format("Sua transferência foi realizada com sucesso!\nSaldo do emissor: R$ %s\nSaldo do receptor: R$ %s", contaOrigem.getSaldo(), contaDestino.getSaldo());
+            return ResponseEntity.ok().body(mensagem);
+        } catch (TransferenciaException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping("/")
-    public ModelAndView index(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("home/index");
-        mv.addObject("msg", "transferencia controller");
-        return mv;
-    }
 }

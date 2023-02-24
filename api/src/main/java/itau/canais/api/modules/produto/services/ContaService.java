@@ -5,14 +5,12 @@ import itau.canais.api.modules.produto.dto.DadosDepositar;
 import itau.canais.api.modules.produto.dto.DadosListagemContas;
 import itau.canais.api.modules.produto.entities.Conta;
 import itau.canais.api.modules.produto.repositories.ContaRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
