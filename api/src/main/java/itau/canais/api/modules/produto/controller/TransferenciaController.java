@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.RoundingMode;
+
 @RestController
 @RequestMapping("transferencias")
 public class TransferenciaController {
@@ -35,7 +37,7 @@ public class TransferenciaController {
             //TODO colocar o contaService no lugar
             Conta contaOrigem = contaRepository.buscarContaByAgenciaConta(String.valueOf(origem.agencia()), origem.nconta());
             Conta contaDestino = contaRepository.buscarContaByAgenciaConta(String.valueOf(destino.agencia()), destino.nconta());
-            String mensagem = String.format("Sua transferência foi realizada com sucesso!\nSaldo do emissor: R$ %s\nSaldo do receptor: R$ %s", contaOrigem.getSaldo(), contaDestino.getSaldo());
+            String mensagem = String.format("Sua transferência foi realizada com sucesso!\nSaldo do emissor: R$ %s\nSaldo do receptor: R$ %s", contaOrigem.getSaldo().setScale(2, RoundingMode.HALF_EVEN), contaDestino.getSaldo().setScale(2, RoundingMode.HALF_EVEN));
             return ResponseEntity.ok().body(mensagem);
         } catch (TransferenciaException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
