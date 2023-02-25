@@ -22,5 +22,5 @@ INSERT INTO contas (agencia, nconta, saldo, cpf) VALUES
 INSERT INTO usuarios (login, senha)
 SELECT cpf, 'Senh@023' FROM clientes;
 
-INSERT INTO usuarios (login, senha) VALUES ('itau', '$2a$10$WQ1i7oPws9DbNA5N1bZEm.2KxGe5sZZUeGa9QDXVpHwgAJLvmR2LG');
+INSERT INTO usuarios (login, senha) VALUES ('itau', '$2a$10$WQ1i7oPws9DbNA5N1bZEm.2KxGe5sZZUeGa9QDXVpHwgAJLvmR2LGSenha');
 
