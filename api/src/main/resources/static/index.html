@@ -44,6 +44,9 @@
         const formData = new FormData(loginForm);
         const username = formData.get("username");
         const password = formData.get("password");
+        
+         // Cria um objeto com as informações de login
+        const loginData = { login: username, senha: password };
 
         // Envia as informações de login para o backend
         fetch("/login", {
@@ -51,12 +54,13 @@
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ username, password })
+          body: JSON.stringify(loginData)
         })
         .then(response => {
           // Verifica se a autenticação foi bem-sucedida
           if (response.ok) {
             // Armazena o token de autenticação no local storage
+            alert("Login feito com sucesso.");
             const token = response.headers.get("Authorization");
             localStorage.setItem("token", token);
 
@@ -64,7 +68,7 @@
             modal.style.display = "none";
 
             // Redireciona para a página de produtos
-            window.location.href = "/produtos";
+            window.location.href = "/produto";
           } else {
             // Exibe uma mensagem de erro caso a autenticação tenha falhado
             alert("Login falhou. Tente novamente.");

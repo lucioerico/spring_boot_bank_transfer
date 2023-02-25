@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 
 @Service
 public class TokenService {
@@ -24,9 +23,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("API BANCO POC de Lucio")
                     .withSubject(usuario.getLogin())
-                    .withClaim("ID", usuario.getId())
-                    .withClaim("CPF", usuario.getLogin())
-                    .withExpiresAt(dataExpiracao())
+                    .withClaim("cpf", usuario.getLogin())
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);
         } catch (JWTCreationException exception){
@@ -35,6 +32,6 @@ public class TokenService {
     }
 
     private Instant dataExpiracao() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusHours(30).toInstant(ZoneOffset.of("-03:00"));
     }
 }
