@@ -39,10 +39,9 @@ loginForm.addEventListener("submit", function(event) {
       response.json().then(data => {
         const token = data.tokenJWT;
         localStorage.setItem('tokenJWT', token);
-
         // Redireciona para a página de produtos
-        const url = new URL("http://localhost:8080/crud/produtos");
-//        url.searchParams.set("tokenJWT", token);
+        const url = new URL("http://localhost:8080/produto/crud");
+        url.searchParams.set("tokenJWT", token);
         window.location.href = url.toString();
       });
       // Fecha a janela modal

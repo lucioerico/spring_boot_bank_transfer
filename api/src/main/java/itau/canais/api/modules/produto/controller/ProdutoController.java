@@ -18,22 +18,21 @@ public class ProdutoController {
 //    }}
 
 
-//    @RequestMapping(value = "/crud", method = RequestMethod.GET)
-//    public ModelAndView crud() {
-//    ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("produto");
-//        return modelAndView;
-//    }
+    @RequestMapping(value = "/crud", method = RequestMethod.GET)
+    public ModelAndView crud() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("produto");
+        return modelAndView;
+    }
+
+//
+//    @GetMapping("/crud")
+//    public String produto(){
+//        return "produto";
+//    }}
 
 
-    @GetMapping("/crud")
-    public String produto(){
-        return "produto";
-    }}
-
-
-
-
+}
 
 
 //    @RequestMapping("/crud")

@@ -23,7 +23,7 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http
+        return http
 //                .csrf().disable()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //                .and().authorizeHttpRequests()
@@ -33,15 +33,15 @@ public class SecurityConfigurations {
 //                .build();
 //    }
 
-        return http
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().build();
+//        return http
+//                .csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().build();
+//
+//    }
 
-    }
-
-
-
+//
+//
 //                .csrf().disable()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //                .and().authorizeHttpRequests()
@@ -49,18 +49,18 @@ public class SecurityConfigurations {
 //                .and().headers().frameOptions().sameOrigin()
 //                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 //                .formLogin()
-//                .loginPage("/index.html")
-//                .loginProcessingUrl("/produto")
+//                .loginPage("/produto.html")
+//                .loginProcessingUrl("/produto").permitAll()
 //                .and().build();
 //    }
-//                .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().authorizeHttpRequests()
-//                .requestMatchers("/**", "/login", "/h2-console/**", "/produto", "/static/**").permitAll()
-//                .and().headers().frameOptions().sameOrigin()
-//                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeHttpRequests()
+                .requestMatchers("/**", "/login", "/h2-console/**", "/produto", "/static/**").permitAll()
+                .and().headers().frameOptions().sameOrigin()
+                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+    }
 //
 //
 //            return http
