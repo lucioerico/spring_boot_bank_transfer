@@ -1,11 +1,11 @@
 -- Inserção de dados na tabela clientes
 INSERT INTO clientes (nome, cpf, senha) VALUES
-('Cliente 2', '40464605040', 'Senh@023'),
-('Cliente 3', '80714091030', 'Senh@023'),
-('Cliente 4', '47232921012', 'Senh@023'),
-('Cliente 5', '46189049095', 'Senh@023'),
-('Cliente 6', '50759334080', 'Senh@023'),
-('Cliente 7', '65813400060', 'Senh@023');
+('Cliente 2', '40464605040', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK'),
+('Cliente 3', '80714091030', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK'),
+('Cliente 4', '47232921012', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK'),
+('Cliente 5', '46189049095', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK'),
+('Cliente 6', '50759334080', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK'),
+('Cliente 7', '65813400060', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK');
 
 -- Inserção de dados na tabela contas
 INSERT INTO contas (agencia, nconta, saldo, cpf) VALUES
