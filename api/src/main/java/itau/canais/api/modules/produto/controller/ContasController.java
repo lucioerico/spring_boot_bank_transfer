@@ -21,7 +21,7 @@ public class ContasController {
     @Autowired
     private ContaService contaService;
 
-    @PostMapping
+    @PostMapping("/criar")
     public ResponseEntity cadastrarConta(@RequestBody @Valid DadosConta dadosConta, UriComponentsBuilder uriBuilder){
         var conta = new Conta(dadosConta);
         contaService.cadastrarConta(dadosConta);

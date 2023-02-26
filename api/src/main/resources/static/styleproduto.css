@@ -1,0 +1,93 @@
+/* Modal CSS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Estilo da tabela */
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Estilo Formulário Para não aparecer */
+
+        .formulario{
+            display: none;
+        }
+
+        /* Estilo da Página */
+        body {
+            background-color: #FFE5B4;
+        }
+
+        button {
+            margin: 20px auto 0;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.transfer-form {
+		    width: 400px;
+		    height: auto;
+		    background-color: #fff;
+		    padding: 20px;
+		    border-radius: 10px;
+		    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+
+		h2 {
+	    text-align: center;
+		}

@@ -15,13 +15,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("clientes")
 public class ClientesController {
 
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping
+    @PostMapping("/criar")
     @Transactional
     public ResponseEntity cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente,  UriComponentsBuilder uriBuilder){
         var cliente = new Cliente(dadosCliente);
@@ -48,3 +48,4 @@ public class ClientesController {
         return clienteService.listarClientes();
     }
 }
+
