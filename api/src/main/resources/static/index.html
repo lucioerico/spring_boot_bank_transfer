@@ -68,7 +68,9 @@
             modal.style.display = "none";
 
             // Redireciona para a página de produtos
-            window.location.href = "/produto";
+            const url = new URL("http://localhost:8080/produto");
+            url.searchParams.set("token", token);
+            window.location.href = url.toString();
           } else {
             // Exibe uma mensagem de erro caso a autenticação tenha falhado
             alert("Login falhou. Tente novamente.");

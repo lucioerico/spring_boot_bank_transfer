@@ -153,7 +153,11 @@
         function consultarClientes() {
             limparConteudo();
 
-            fetch('/clientes/listar')
+            fetch('/clientes/listar'),{
+            
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }})
                 .then(response => response.json())
                 .then(clientes => {
                     var tabela = document.createElement('table');
