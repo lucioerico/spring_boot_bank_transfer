@@ -37,6 +37,6 @@ public class ProdutoController {
 
 //    @RequestMapping("/crud")
 //    public String index() {
-//        return "produto.html";
+//        return "index.html";
 //    }
 

@@ -49,16 +49,19 @@ public class SecurityConfigurations {
 //                .and().headers().frameOptions().sameOrigin()
 //                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 //                .formLogin()
-//                .loginPage("/produto.html")
+//                .loginPage("/index.html")
 //                .loginProcessingUrl("/produto").permitAll()
 //                .and().build();
 //    }
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
-                .requestMatchers("/**", "/login", "/h2-console/**", "/produto", "/static/**").permitAll()
+                .requestMatchers("/**", "/login", "/h2-console/**", "/static/**").permitAll()
                 .and().headers().frameOptions().sameOrigin()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin()
+                .defaultSuccessUrl("/")
+                .and()
                 .build();
     }
 //
