@@ -7,10 +7,12 @@ import itau.canais.api.modules.produto.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
 
 @Service
+@RequestMapping("transferencias")
 public class TransferenciaService {
 
     @Autowired
@@ -18,6 +20,7 @@ public class TransferenciaService {
 
 
     @Transactional
+    @RequestMapping("/transferir")
     public void transferir(DadosTransferir origem, DadosTransferir destino) {
         Conta contaOrigem = contaRepository.buscarContaByAgenciaConta(String.valueOf(origem.agencia()), origem.nconta());
         Conta contaDestino = contaRepository.buscarContaByAgenciaConta(String.valueOf(destino.agencia()), destino.nconta());

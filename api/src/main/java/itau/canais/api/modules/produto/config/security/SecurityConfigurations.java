@@ -58,10 +58,9 @@ public class SecurityConfigurations {
                 .and().authorizeHttpRequests()
                 .requestMatchers("/**", "/login", "/h2-console/**", "/static/**").permitAll()
                 .and().headers().frameOptions().sameOrigin()
-                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin()
-                .defaultSuccessUrl("/")
                 .and()
+                .formLogin()
+                .defaultSuccessUrl("/").permitAll().and()
                 .build();
     }
 //

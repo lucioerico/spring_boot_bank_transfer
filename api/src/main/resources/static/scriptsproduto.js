@@ -2,7 +2,8 @@
         // Obtém o token da URL
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get("token");
-
+        url.searchParams.set("token", token);
+        window.location.href = url.toString(
 
         <!-- Consultar clientes -->
         function consultarClientes() {
