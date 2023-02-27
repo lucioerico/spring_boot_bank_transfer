@@ -68,7 +68,7 @@
 
         button {
             margin: 20px auto 0;
-            display: block;
+            display: inline-block;
         }
 
         .container {

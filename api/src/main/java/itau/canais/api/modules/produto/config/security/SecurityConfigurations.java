@@ -24,51 +24,19 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().authorizeHttpRequests()
-//                .requestMatchers("/**", "/login", "/h2-console/**", "/produto", "/static/**").permitAll()
-//                .and().headers().frameOptions().sameOrigin()
-//                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
 
-//        return http
-//                .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().build();
-//
-//    }
 
-//
-//
-//                .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().authorizeHttpRequests()
-//                .requestMatchers("/**", "/login", "/h2-console/**", "/produto", "/static/**").permitAll()
-//                .and().headers().frameOptions().sameOrigin()
-//                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-//                .formLogin()
-//                .loginPage("/index.html")
-//                .loginProcessingUrl("/produto").permitAll()
-//                .and().build();
-//    }
                 .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and().authorizeHttpRequests()
-                .requestMatchers("/**", "/login", "/h2-console/**", "/static/**").permitAll()
+                .requestMatchers( "/login", "/h2-console/**").permitAll()
+                .anyRequest().authenticated()
                 .and().headers().frameOptions().sameOrigin()
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/").permitAll().and()
+                .and().formLogin()
+                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-//
-//
-//            return http
-//                    .csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().build();
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
