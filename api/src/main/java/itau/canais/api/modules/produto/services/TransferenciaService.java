@@ -31,6 +31,7 @@ public class TransferenciaService {
     }
 
     private void executaTransferencia(DadosTransferir origem, DadosTransferir destino, Conta contaOrigem, Conta contaDestino, BigDecimal valorTransferencia) {
+        verificarContaDestino(contaOrigem, contaDestino);
         if (contaOrigem.getSaldo().compareTo(origem.valorTransferencia()) < 0) {
             throw new RuntimeException("Conta de origem não tem saldo suficiente.");
         }
@@ -66,6 +67,12 @@ public class TransferenciaService {
             throw new RuntimeException("Operação inválida");
         }
     }
+    private void verificarContaDestino(Conta contaOrigem, Conta contaDestino) {
+        if (contaOrigem.getAgencia().equals(contaDestino.getAgencia()) && contaOrigem.getNconta().equals(contaDestino.getNconta())) {
+            throw new RuntimeException("Não é possível transferir para a mesma conta.");
+        }
+    }
+
 }
 
 
