@@ -177,7 +177,7 @@ var formulario = document.getElementById('formCadastroConta');
 var formData = new FormData(formulario);
 
 const jsonData = {
-nome: formData.get('agencia'),
+agencia: formData.get('agencia'),
 cpf: formData.get('cpf'),
 nconta: formData.get('nconta'),
 saldo: Number(formData.get('saldo'))
