@@ -9,4 +9,7 @@ public class TransferenciaRequest {
 
     private DadosTransferir origem;
     private DadosTransferir destino;
+
+    public TransferenciaRequest(DadosTransferir origem, DadosTransferir destino) {
+    }
 }
