@@ -104,7 +104,7 @@ var formulario = document.getElementById('formCadastroCliente');
 formulario.style.display = 'block';
 }
 
-<!-- Cadastrar cliente -->
+<!-- Função cadastrar cliente -->
 
 function cadastrarCliente() {
 var formulario = document.getElementById('formCadastroCliente');
@@ -119,7 +119,7 @@ senha: formData.get('senha')
 fetch('/clientes/criar', {
 method: 'POST',
 headers: {
-'Content-Type': 'application/json;charset=UTF-8'
+'Content-Type': 'application/json'
 },
 body: JSON.stringify(jsonData)
 })
@@ -127,8 +127,6 @@ body: JSON.stringify(jsonData)
 if (response.ok) {
 response.text().then(mensagem => {
 alert(mensagem);
-formulario.reset();
-formulario.style.display = 'none';
 });
 } else {
 response.text().then(mensagem => {
@@ -140,16 +138,20 @@ alert(mensagem);
 console.error('Ocorreu um erro ao tentar cadastrar o cliente:', error);
 alert('Ocorreu um erro ao tentar cadastrar o cliente!');
 });
+  formulario.reset();
+  formulario.style.display = 'none';
 }
-
-var botaoCadastrar = document.getElementById('btnCadastrar');
+var botaoCadastrar = document.getElementById('btnCadastrarCliente');
 botaoCadastrar.addEventListener('click', mostrarFormularioCliente);
 
-var formularioCadastro = document.getElementById('formCadastroCliente');
-formularioCadastro.addEventListener('submit', function(event) {
+var formularioCadastroCliente = document.getElementById('formCadastroCliente');
+formularioCadastroCliente.addEventListener('submit', function(event) {
 event.preventDefault();
 cadastrarCliente();
 });
+
+
+
         <!-- Limpa conteúdo -->
 
         function limparConteudo() {

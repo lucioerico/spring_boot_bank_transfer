@@ -30,7 +30,6 @@ public class ClienteService {
         Usuario usuario = new Usuario();
         usuario.setLogin(dadosCliente.cpf()); // Usa o CPF como login
         usuario.setSenha(dadosCliente.senha()); // Usa a senha do cliente
-
         // Salva o usuário no banco de dados
         usuarioRepository.save(usuario);
     }

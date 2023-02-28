@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,11 +22,12 @@ public class ClientesController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping(consumes={"application/xml", "application/json","aplication/x-ww-form-urlencoded"})
+
+    @PostMapping(value = "/criar", consumes={"application/xml", "application/json","aplication/x-ww-form-urlencoded"})
     @Transactional
-    @RequestMapping("/criar")
-    @CacheEvict(value = "serviceList", allEntries = true)
-    public ResponseEntity cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente,  UriComponentsBuilder uriBuilder){
+    @CacheEvict (value = "serviceList", allEntries = true)
+    public ResponseEntity<String> cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente,  UriComponentsBuilder uriBuilder){
+        System.out.println("DADOS CLIENTE: " + dadosCliente);
         var cliente = new Cliente(dadosCliente);
         clienteService.cadastrarCliente(dadosCliente);
         var uri =uriBuilder.path("/clientes/{id}").buildAndExpand(cliente.getCpf()).toUri();
@@ -39,7 +39,7 @@ public class ClientesController {
         return clienteService.listarClientes();
     }
 
-    @PutMapping
+    @PutMapping("/atualizar")
     @Transactional
     public ResponseEntity atualizarCliente(@RequestBody @Valid DadosAtualizacaoCliente dados){
         clienteService.atualizarCliente(dados);

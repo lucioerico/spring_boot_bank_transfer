@@ -19,8 +19,6 @@
 <button onclick="consultarContas()">Consultar contas</button>
 <button id="btnCadastrarCliente" onclick="mostrarFormularioCliente()">Cadastrar Cliente</button>
 <button id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
-
-</button>
 <button onclick="logout()">Logout</button>
 
 
@@ -65,7 +63,7 @@
 
 <!-- formulário de Cadastro de Cliente -->
 
-<form method="POST" name="formCadastroCliente" action="/clientes/cadastrar" class="formulario" id="formCadastroCliente">
+<form method="POST" action="/clientes/criar" name="formCadastroCliente" class="formulario" id="formCadastroCliente">
 	<h2>Cadastrar Cliente</h2>
 	<br>
 	<label>Nome</label>
@@ -76,10 +74,9 @@
 	<br>
 	<label>Senha</label>
 	<input type="text" name="senha" placeholder="Digite uma senha" />
+	<br>
 	<input type="submit" value="Cadastrar" />
 </form>
-
-
 
 <script src="scripts.js">
 
