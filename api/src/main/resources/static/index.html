@@ -4,104 +4,134 @@
 <head>
 	<meta charset="UTF-8">
 	<!-- CSS do Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css"></link>
+
+	<link rel="stylesheet" href="style.css">
+	</link>
 	<title>Produtos</title>
-	
+
 	<!-- Estilo Pagina -->
 	<style>
-  
-    </style>
+
+	</style>
 </head>
 
 <body>
-<button onclick="consultarClientes()">Consultar clientes</button>
-<button onclick="consultarContas()">Consultar contas</button>
-<button id="btnCadastrarCliente" onclick="mostrarFormularioCliente()">Cadastrar Cliente</button>
-<button id="btnCadastrarConta" onclick="mostrarFormularioConta()">Cadastrar Conta</button>
-<button id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
-<button onclick="logout()">Logout</button>
 
+	<header class="header">
+		<img class="header-logo" src="logo-header.png" alt="">
+		<nav class="menu-header">
 
-<!-- formulário de Transferência de valor -->
-<form method="POST" name="formTransferenciaSaldo" action="/transferencias/transferir" class="formulario" id="formTransferenciaSaldo">
-	<h2>Transferência de valor</h2>
-	<br>
-	<h3>Origem</h3>
-	<br>
-	<label>Agencia</label>
-	<input type="text" name="agenciaOrigem" placeholder="Digite o número da agência" />
-	<br>
-	<label>Conta</label>
-	<input type="text" name="ncontaOrigem" placeholder="Digite o número da conta" />
-	<br>
-	<label>CPF</label>
-	<input type="text" name="cpfOrigem" placeholder="Digite o numero do CPF" />
-	<br>
-	<label>Valor</label>
-	<input type="number" name="valorTransferencia" placeholder="R$ 00.00" />
-	<br>
-	<label>Operação</label>
-	<select name="operacao">
-		<option value="0">TED</option>
-		<option value="1">DOC</option>
-		<option value="2">PIX</option>
-	</select>
+			<button class="menu-header-item" onclick="consultarClientes()">Consultar clientes</button>
+			<button class="menu-header-item" onclick="consultarContas()">Consultar contas</button>
+			<button class="menu-header-item" id="btnCadastrarCliente" onclick="mostrarFormularioCliente()">Cadastrar
+				Cliente</button>
+			<button class="menu-header-item" id="btnCadastrarConta" onclick="mostrarFormularioConta()">Cadastrar
+				Conta</button>
+			<button class="menu-header-item" id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
+			<button class="menu-header-item" onclick="logout()">Logout</button>
+
+		</nav>
+	</header>
+
+	<!-- formulário de Transferência de valor -->
+	<form method="POST" name="formTransferenciaSaldo" action="/transferencias/transferir" class="formulario"
+		id="formTransferenciaSaldo">
+
+		<div class="conteudo-transferencia">
+			<h2>Transferência de valor</h2>
+
+			<div class="conteudo-transferencia-origem">
+				<h3>Origem</h3>
+
+				<label>Agencia</label>
+				<input class="conteudo-transferencia-origem-input" type="text" name="agenciaOrigem"
+					placeholder="Digite o número da agência" />
+
+				<label>Conta</label>
+				<input class="conteudo-transferencia-origem-input" type="text" name="ncontaOrigem"
+					placeholder="Digite o número da conta" />
+
+				<label>CPF</label>
+				<input class="conteudo-transferencia-origem-input" type="text" name="cpfOrigem"
+					placeholder="Digite o numero do CPF" />
+
+				<label>Valor</label>
+				<input class="conteudo-transferencia-origem-input" type="number" name="valorTransferencia"
+					placeholder="R$ 00.00" />
+
+				<label>Operação</label>
+				<select class="conteudo-transferencia-origem-input-dropdown" name="operacao">
+					<option value="0">TED</option>
+					<option value="1">DOC</option>
+					<option value="2">PIX</option>
+				</select>
+			</div>
+
+			<div class="conteudo-transferencia-destino">
+				<h3>Destino</h3>
+
+				<label>Agencia</label>
+				<input class="conteudo-transferencia-destino-input" type="text" name="agenciaDestino"
+					placeholder="Digite o número da agência" />
+
+				<label>Conta</label>
+				<input class="conteudo-transferencia-destino-input" type="text" name="ncontaDestino"
+					placeholder="Digite o número da conta" />
+
+				<label>CPF</label>
+				<input class="conteudo-transferencia-destino-input" type="text" name="cpfDestino"
+					placeholder="Digite o numero do CPF" />
+
+				<input class="conteudo-transferencia-destino-botao" type="submit" value="Transferir" />
+	</form>
+	</div>
+
+	</div>
+	<!-- formulário de Cadastro de Cliente -->
+
+	<form method="POST" action="/clientes/criar" name="formCadastroCliente" class="formulario" id="formCadastroCliente">
+
+		<div class="conteudo-cadastrar-cliente">
+			<h2>Cadastrar Cliente</h2>
+			
+			<label>Nome</label>
+			<input class="conteudo-transferencia-cadastrar-cliente-input" type="text" name="nome" placeholder="Digite o nome do cliente" />
+			
+			<label>CPF</label>
+			<input class="conteudo-transferencia-cadastrar-cliente-input" type="text" name="cpf" placeholder="Digite o número do CPF" />
+			
+			<label>Senha</label>
+			<input class="conteudo-transferencia-cadastrar-cliente-input"type="text" name="senha" placeholder="Digite uma senha" />
+			
+			<input class="conteudo-transferencia-cadastrar-cliente-botao" type="submit" value="Cadastrar" />
+	</form>
+	</div>
+
+	<!-- formulário de Cadastro de Conta -->
+
+	<form method="POST" action="/contas/criar" name="formCadastroConta" class="formulario" id="formCadastroConta">
+
+		<div class="conteudo-cadastrar-conta">
+		<h2>Cadastrar Conta</h2>
 	
-	<h3>Destino</h3>
-	<br>
-	<label>Agencia</label>
-	<input type="text" name="agenciaDestino" placeholder="Digite o número da agência" />
-	<br>
-	<label>Conta</label>
-	<input type="text" name="ncontaDestino" placeholder="Digite o número da conta" />
-	<br>
-	<label>CPF</label>
-	<input type="text" name="cpfDestino" placeholder="Digite o numero do CPF" />
-	<br>
-	<input type="submit" value="Transferir" />
-</form>
+		<label>Agência</label>
+		<input class="conteudo-cadastrar-conta-input" type="text" name="agencia" placeholder="Digite o número da Agência" />
+	
+		<label>Conta</label>
+		<input class="conteudo-cadastrar-conta-input" type="text" name="nconta" placeholder="Digite o número da Conta" />
+		
+		<label>CPF</label>
+		<input class="conteudo-cadastrar-conta-input" type="text" name="cpf" placeholder="Digite o CPF do Títular" />
+		
+		<label>Saldo</label>
+		<input class="conteudo-cadastrar-conta-input" type="number" name="saldo" placeholder="Digite o valor de abertura de conta" />
+		
+		<input class="conteudo-cadastrar-conta-botao" type="submit" value="Cadastrar" />
+	</form>
+</div>
+	<script src="scripts.js">
 
-<!-- formulário de Cadastro de Cliente -->
-
-<form method="POST" action="/clientes/criar" name="formCadastroCliente" class="formulario" id="formCadastroCliente">
-	<h2>Cadastrar Cliente</h2>
-	<br>
-	<label>Nome</label>
-	<input type="text" name="nome" placeholder="Digite o nome do cliente" />
-	<br>
-	<label>CPF</label>
-	<input type="text" name="cpf" placeholder="Digite o número do CPF" />
-	<br>
-	<label>Senha</label>
-	<input type="text" name="senha" placeholder="Digite uma senha" />
-	<br>
-	<input type="submit" value="Cadastrar" />
-</form>
-
-<!-- formulário de Cadastro de Conta -->
-
-<form method="POST" action="/contas/criar" name="formCadastroConta" class="formulario" id="formCadastroConta">
-	<h2>Cadastrar Conta</h2>
-	<br>
-	<label>Agência</label>
-	<input type="text" name="agencia" placeholder="Digite o número da Agência" />
-	<br>
-	<label>Conta</label>
-	<input type="text" name="nconta" placeholder="Digite o número da Conta" />
-	<br>
-	<label>CPF</label>
-	<input type="text" name="cpf" placeholder="Digite o CPF do Títular" />
-	<br>
-	<label>Saldo</label>
-	<input type="number" name="saldo" placeholder="Digite o valor de abertura de conta" />
-	<br>
-	<input type="submit" value="Cadastrar" />
-</form>
-
-<script src="scripts.js">
-
-</script>
+	</script>
 
 </body>
 
