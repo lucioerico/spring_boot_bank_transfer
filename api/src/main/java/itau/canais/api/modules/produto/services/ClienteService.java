@@ -26,9 +26,7 @@ public class ClienteService {
         Cliente cliente = new Cliente(dadosCliente);
         cliente.setSenha(new BCryptPasswordEncoder().encode(dadosCliente.senha()));
         repository.save(new Cliente(dadosCliente));
-        // Salva o cliente no banco de dados
         repository.save(cliente);
-        // Cria o objeto Usuario a partir dos dados do cliente
         Usuario usuario = new Usuario();
         usuario.setLogin(dadosCliente.cpf()); // Usa o CPF como login
         usuario.setSenha(new BCryptPasswordEncoder().encode(dadosCliente.senha())); // Usa a senha do cliente
