@@ -23,6 +23,7 @@ public class ContasController {
 
     @PostMapping("/criar")
     public ResponseEntity cadastrarConta(@RequestBody @Valid DadosConta dadosConta, UriComponentsBuilder uriBuilder){
+        System.out.println("DADOS Conta: " + dadosConta);
         var conta = new Conta(dadosConta);
         contaService.cadastrarConta(dadosConta);
         var uri = uriBuilder.path("/contas/{id}").buildAndExpand(conta.getCpf()).toUri();

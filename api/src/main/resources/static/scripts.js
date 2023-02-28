@@ -170,6 +170,55 @@ cadastrarCliente();
         }
 
 
+<!-- Função cadastrar conta -->
+
+function cadastrarConta() {
+var formulario = document.getElementById('formCadastroConta');
+var formData = new FormData(formulario);
+
+const jsonData = {
+nome: formData.get('agencia'),
+cpf: formData.get('cpf'),
+nconta: formData.get('nconta'),
+saldo: Number(formData.get('saldo'))
+};
+
+fetch('/contas/criar', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify(jsonData)
+})
+.then(response => {
+if (response.ok) {
+response.text().then(mensagem => {
+alert(mensagem);
+});
+} else {
+response.text().then(mensagem => {
+alert(mensagem);
+});
+}
+})
+.catch(error => {
+console.error('Ocorreu um erro ao tentar cadastrar o cliente:', error);
+alert('Ocorreu um erro ao tentar cadastrar o cliente!');
+});
+  formulario.reset();
+  formulario.style.display = 'none';
+}
+
+var botaoCadastrar = document.getElementById('btnCadastrarConta');
+botaoCadastrar.addEventListener('click', mostrarFormularioConta);
+
+var formularioCadastroConta = document.getElementById('formCadastroConta');
+formularioCadastroConta.addEventListener('submit', function(event) {
+  event.preventDefault();
+  cadastrarConta();
+});
+
+
 <!-- Logout -->
 
            function logout() {

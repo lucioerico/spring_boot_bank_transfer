@@ -27,7 +27,6 @@ public class ClientesController {
     @Transactional
     @CacheEvict (value = "serviceList", allEntries = true)
     public ResponseEntity<String> cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente,  UriComponentsBuilder uriBuilder){
-        System.out.println("DADOS CLIENTE: " + dadosCliente);
         var cliente = new Cliente(dadosCliente);
         clienteService.cadastrarCliente(dadosCliente);
         var uri =uriBuilder.path("/clientes/{id}").buildAndExpand(cliente.getCpf()).toUri();
