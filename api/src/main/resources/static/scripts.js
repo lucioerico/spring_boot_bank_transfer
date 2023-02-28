@@ -1,124 +1,167 @@
+<!-- Consultar clientes -->
+        function consultarClientes() {
+            limparConteudo();
 
-      <!-- Consultar clientes -->
-                function consultarClientes() {
-                    limparConteudo();
+            fetch('/clientes/listar')
+                .then(response => response.json())
+                .then(clientes => {
+                    var tabela = document.createElement('table');
+                    tabela.innerHTML = '<tr><th>CPF</th><th>Nome</th></tr>';
+                    clientes.forEach(cliente => {
+                        var linha = document.createElement('tr');
+                        linha.innerHTML = '<td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td>';
+                        tabela.appendChild(linha);
+                    });
+                    document.body.appendChild(tabela);
+                });
+        }
+        <!-- Consultar contas -->
 
-                    fetch('/clientes/listar')
-                        .then(response => response.json())
-                        .then(clientes => {
-                            var tabela = document.createElement('table');
-                            tabela.innerHTML = '<tr><th>CPF</th><th>Nome</th></tr>';
-                            clientes.forEach(cliente => {
-                                var linha = document.createElement('tr');
-                                linha.innerHTML = '<td>' + cliente.cpf + '</td><td>' + cliente.nome + '</td>';
-                                tabela.appendChild(linha);
-                            });
-                            document.body.appendChild(tabela);
-                        });
-                }
-                <!-- Consultar contas -->
+        function consultarContas() {
+            limparConteudo();
 
-                function consultarContas() {
-                    limparConteudo();
+            fetch('/contas/listar')
+                .then(response => response.json())
+                .then(contas => {
+                    var tabela = document.createElement('table');
+                    tabela.innerHTML = '<tr><th>Cpf</th><th>Agencia</th><th>Conta</th><th>Saldo</th></tr>';
+                    contas.forEach(conta => {
+                        var linha = document.createElement('tr');
+                        linha.innerHTML = '<td>' + conta.cpf + '</td><td>' + conta.agencia + '</td><td>' + conta.nconta + '</td><td>' + conta.saldo + '</td>';
+                        tabela.appendChild(linha);
+                    });
+                    document.body.appendChild(tabela);
+                });
+        }
 
-                    fetch('/contas/listar')
-                        .then(response => response.json())
-                        .then(contas => {
-                            var tabela = document.createElement('table');
-                            tabela.innerHTML = '<tr><th>Cpf</th><th>Agencia</th><th>Conta</th><th>Saldo</th></tr>';
-                            contas.forEach(conta => {
-                                var linha = document.createElement('tr');
-                                linha.innerHTML = '<td>' + conta.cpf + '</td><td>' + conta.agencia + '</td><td>' + conta.nconta + '</td><td>' + conta.saldo + '</td>';
-                                tabela.appendChild(linha);
-                            });
-                            document.body.appendChild(tabela);
-                        });
-                }
+ <!-- Mostrar formuário de transferência -->
+        function mostrarFormulario() {
+        var formulario = document.getElementById('formTransferenciaSaldo');
+        formulario.style.display = 'block';
+		}
 
-                       <!-- Logout -->
+ <!-- Função transferir -->
 
-             function logout() {
-               const logoutUrl = "http://localhost:8080/logout";
-               window.location.href = logoutUrl;
-             }
+		function transferir() {
+        var formulario = document.getElementById('formTransferenciaSaldo');
+        var dados = new FormData(formulario);
 
-              <!-- Logout -->
-             function mostrarFormularioCliente() {
-                 var formulario = document.getElementById('formCadastroCliente');
-                 formulario.style.display = 'block';
-             }
+        const jsonData = {
+        origem: {
+        cpf: dados.get('cpfOrigem'),
+        agencia: dados.get('agenciaOrigem'),
+        nconta: dados.get('ncontaOrigem'),
+        valorTransferencia: Number(dados.get('valorTransferencia')),
+        operacao: Number(dados.get('operacao'))
+        },
+        destino: {
+        cpf: dados.get('cpfDestino'),
+        agencia: dados.get('agenciaDestino'),
+        nconta: dados.get('ncontaDestino')
+        }
+        };
 
+        fetch('/transferencias/transferir', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+        })
+        .then(response => {
+         if (response.ok) {
+      response.text().then(mensagem => {
+        alert(mensagem);
+      });
+    } else {
+      response.text().then(mensagem => {
+        alert(mensagem);
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Ocorreu um erro ao tentar realizar a transferência:', error);
+    alert('Ocorreu um erro ao tentar realizar a transferência!');
+  });
 
+    formulario.reset();
+    formulario.style.display = 'none';
+	}
 
+	var botaoTransferir = document.getElementById('btnTransferir');
+	botaoTransferir.addEventListener('click', mostrarFormulario);
 
-                <!-- Limpa conteúdo -->
+	var formulario = document.getElementById('formTransferenciaSaldo');
+	formulario.addEventListener('submit', function(event) {
+    event.preventDefault();
+    transferir();
+	});
 
-                function limparConteudo() {
-                    // Remove a tabela, se existir
-                    var tabela = document.querySelector('table');
-                    if (tabela) {
-                        tabela.remove();
-                    }
-                }
-                 <!-- Limpa conteúdo -->
+<!-- Mostrar formulário de cadastro de cliente -->
 
-                function mostrarFormulario() {
-                var formulario = document.getElementById('formTransferenciaSaldo');
-                formulario.style.display = 'block';
-        		}
-                 <!-- Transferência de valor -->
+function mostrarFormularioCliente() {
+var formulario = document.getElementById('formCadastroCliente');
+formulario.style.display = 'block';
+}
 
-        		function transferir() {
-                var formulario = document.getElementById('formTransferenciaSaldo');
-                var dados = new FormData(formulario);
+<!-- Cadastrar cliente -->
 
-                const jsonData = {
-                origem: {
-                cpf: dados.get('cpfOrigem'),
-                agencia: dados.get('agenciaOrigem'),
-                nconta: dados.get('ncontaOrigem'),
-                valorTransferencia: Number(dados.get('valorTransferencia')),
-                operacao: Number(dados.get('operacao'))
-                },
-                destino: {
-                cpf: dados.get('cpfDestino'),
-                agencia: dados.get('agenciaDestino'),
-                nconta: dados.get('ncontaDestino')
-                }
-                };
+function cadastrarCliente() {
+var formulario = document.getElementById('formCadastroCliente');
+var formData = new FormData(formulario);
 
-                fetch('/transferencias/transferir', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonData)
-                })
-                .then(response => {
-                 if (response.ok) {
-              response.text().then(mensagem => {
-                alert(mensagem);
-              });
-            } else {
-              response.text().then(mensagem => {
-                alert(mensagem);
-              });
+const jsonData = {
+nome: formData.get('nome'),
+cpf: formData.get('cpf'),
+senha: formData.get('senha')
+};
+
+fetch('/clientes/criar', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json;charset=UTF-8'
+},
+body: JSON.stringify(jsonData)
+})
+.then(response => {
+if (response.ok) {
+response.text().then(mensagem => {
+alert(mensagem);
+formulario.reset();
+formulario.style.display = 'none';
+});
+} else {
+response.text().then(mensagem => {
+alert(mensagem);
+});
+}
+})
+.catch(error => {
+console.error('Ocorreu um erro ao tentar cadastrar o cliente:', error);
+alert('Ocorreu um erro ao tentar cadastrar o cliente!');
+});
+}
+
+var botaoCadastrar = document.getElementById('btnCadastrar');
+botaoCadastrar.addEventListener('click', mostrarFormularioCliente);
+
+var formularioCadastro = document.getElementById('formCadastroCliente');
+formularioCadastro.addEventListener('submit', function(event) {
+event.preventDefault();
+cadastrarCliente();
+});
+        <!-- Limpa conteúdo -->
+
+        function limparConteudo() {
+            // Remove a tabela, se existir
+            var tabela = document.querySelector('table');
+            if (tabela) {
+                tabela.remove();
             }
-          })
-          .catch(error => {
-            console.error('Ocorreu um erro ao tentar realizar a transferência:', error);
-            alert('Ocorreu um erro ao tentar realizar a transferência!');
-          });
+        }
+<!-- Logout -->
 
-            formulario.reset();
-            formulario.style.display = 'none';
-        	}
-
-        	var botaoTransferir = document.getElementById('btnTransferir');
-        	botaoTransferir.addEventListener('click', mostrarFormulario);
-
-        	var formulario = document.getElementById('formTransferenciaSaldo');
-        	formulario.addEventListener('submit', function(event) {
-            event.preventDefault();
-            transferir();
-        	});
+           function logout() {
+                   const logoutUrl = "http://localhost:8080/logout";
+                   window.location.href = logoutUrl;
+                 }

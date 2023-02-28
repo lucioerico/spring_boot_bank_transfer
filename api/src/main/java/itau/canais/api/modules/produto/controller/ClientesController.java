@@ -7,7 +7,9 @@ import itau.canais.api.modules.produto.entities.Cliente;
 import itau.canais.api.modules.produto.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,8 +23,10 @@ public class ClientesController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping("/criar")
+    @PostMapping(consumes={"application/xml", "application/json","aplication/x-ww-form-urlencoded"})
     @Transactional
+    @RequestMapping("/criar")
+    @CacheEvict(value = "serviceList", allEntries = true)
     public ResponseEntity cadastrarCliente(@RequestBody @Valid DadosCliente dadosCliente,  UriComponentsBuilder uriBuilder){
         var cliente = new Cliente(dadosCliente);
         clienteService.cadastrarCliente(dadosCliente);

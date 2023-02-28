@@ -17,32 +17,24 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
 
 
-    @Autowired
-    private TokenService tokenService;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var tokenJWT = recuperarToken(request);
-        if(tokenJWT != null){
-            var subject = tokenService.getSubject(tokenJWT);
-            var usuario = usuarioRepository.findByLogin(subject);
-            System.out.println("USUARIO FILTER: " + usuario);
-            var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("LOGADO NA REQUISIÇÃO");
+        var username = request.getParameter("username");
+        var password = request.getParameter("password");
+        if (username != null && password != null) {
+            var usuario = usuarioRepository.findByLogin(username);
+            if (usuario != null && usuario.getPassword().equals(password)) {
+                var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("LOGADO NA REQUISIÇÃO");
+            }
         }
         filterChain.doFilter(request, response);
     }
-
-    private String recuperarToken(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        if(authorizationHeader != null){
-            return authorizationHeader.replace("Bearer ","");
-        }
-        return null;
-    }
 }
+
 

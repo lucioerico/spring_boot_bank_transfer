@@ -20,7 +20,7 @@ INSERT INTO contas (agencia, nconta, saldo, cpf) VALUES
 
 -- Inserção de dados na tabela usuarios
 INSERT INTO usuarios (login, senha)
-SELECT cpf, 'Senh@023' FROM clientes;
+SELECT cpf, '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK' FROM clientes;
 
 INSERT INTO usuarios (login, senha) VALUES ('itau', '$2a$10$bfkagE/FzcMgdC7t6V8aK.8093qHme0a7YMYe/hdo1gnpUM2JZ9pK');
 
