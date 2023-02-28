@@ -18,6 +18,7 @@
 <button onclick="consultarClientes()">Consultar clientes</button>
 <button onclick="consultarContas()">Consultar contas</button>
 <button id="btnCadastrarCliente" onclick="mostrarFormularioCliente()">Cadastrar Cliente</button>
+<button id="btnCadastrarConta" onclick="mostrarFormularioConta()">Cadastrar Conta</button>
 <button id="btnTransferir" onclick="mostrarFormulario()">Transferir</button>
 <button onclick="logout()">Logout</button>
 
@@ -76,6 +77,26 @@
 	<input type="text" name="senha" placeholder="Digite uma senha" />
 	<br>
 	<input type="submit" value="Cadastrar" />
+</form>
+
+<!-- formulário de Cadastro de Conta -->
+
+<form method="POST" action="/contas/criar" name="formCadastroConta" class="formulario" id="formCadastroConta">
+	<h2>Cadastrar Conta</h2>
+	<br>
+	<label>Agência</label>
+	<input type="text" name="agencia" placeholder="Digite o número da Agência" />
+	<br>
+	<label>Conta</label>
+	<input type="text" name="nconta" placeholder="Digite o número da Conta" />
+	<br>
+	<label>CPF</label>
+	<input type="text" name="cpf" placeholder="Digite o CPF do Títular" />
+	<br>
+	<label>Saldo</label>
+	<input type="number" name="saldo" placeholder="Digite o valor de abertura de conta" />
+	<br>
+	<input type="submit" value="CadastrarConta" />
 </form>
 
 <script src="scripts.js">

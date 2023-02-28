@@ -29,11 +29,7 @@ public class ContasController {
         return ResponseEntity.created(uri).body("Cadastrado com sucesso");
     }
 
-    @GetMapping
-    public List<DadosListagemContas> listar(){
-        return contaService.listar();
-    }
-
+    // TODO implementar quando for feito niveis de acesso
     @PutMapping
     public ResponseEntity depositar(@RequestBody @Valid DadosDepositar dados){
         contaService.depositar(dados);

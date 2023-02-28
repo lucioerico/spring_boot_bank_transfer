@@ -161,6 +161,15 @@ cadastrarCliente();
                 tabela.remove();
             }
         }
+
+        <!-- Mostrar formulário de cadastro de conta -->
+
+        function mostrarFormularioConta() {
+        var formulario = document.getElementById('formCadastroConta');
+        formulario.style.display = 'block';
+        }
+
+
 <!-- Logout -->
 
            function logout() {
