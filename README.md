@@ -21,7 +21,7 @@
   <li>Clone o repositório usando o Git:</li>
 </ol>
 
-<pre><code>git clone https://github.com/lucioerico/spring_bot_bank_transfer.git
+<pre><code>git clone https://github.com/lucioerico/spring_boot_bank_transfer.git
 </code></pre>
 
 <ol start="2">
