@@ -2,7 +2,7 @@
 
 <h1 align="center">Projeto do Candidato Lúcio Érico</h1>
 
-<p align="center">Este é um projeto de demonstração da API REST do Itau Canais, desenvolvido entre os dias 15 e 28 de fevereiro. Foi uma experiência fantástica, pois pude aprender muitas coisas sobre o Spring Boot, além de ter meu primeiro contato com o Spring Security e a preparação de um front-end que se comunique. Espero que gostem do código e, caso tenham algum feedback para melhorias, ficarei muito grato em recebê-lo. Desde já, agradeço pela oportunidade de realizar essa tarefa, foi extremamente divertido.
+<p align="center">Este é um projeto de demonstração da API REST para operações de PIX, TED E DOC, desenvolvido entre os dias 15 e 28 de fevereiro, para fins de estudo do Spring Boot, com conceitos do mercado financeiro. Espero que gostem do código e, caso tenham algum feedback para melhorias, ficarei muito grato em recebê-lo.
 </p>
 
 <h2>Pré-requisitos</h2>
