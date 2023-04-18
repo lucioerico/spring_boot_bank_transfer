@@ -1,6 +1,6 @@
 <!-- Início do README.md -->
 
-<h1 align="center">Projeto do Candidato Lúcio Érico</h1>
+<h1 align="center">Projeto Spring Boot</h1>
 
 <p align="center">Este é um projeto de demonstração da API REST para operações de PIX, TED E DOC, desenvolvido entre os dias 15 e 28 de fevereiro, para fins de estudo do Spring Boot, com conceitos do mercado financeiro. Espero que gostem do código e, caso tenham algum feedback para melhorias, ficarei muito grato em recebê-lo.
 </p>
