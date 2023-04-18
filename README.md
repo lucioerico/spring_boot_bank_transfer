@@ -28,7 +28,7 @@
   <li>Execute o comando Maven <code>clean install</code> na pasta raiz do projeto para baixar as dependências e compilar o código:</li>
 </ol>
 
-<pre><code>cd itau_canais_estag
+<pre><code>
 mvn clean install
 </code></pre>
 
