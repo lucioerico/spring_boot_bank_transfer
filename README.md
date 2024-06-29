@@ -29,7 +29,7 @@
 </ol>
 
 <pre><code>
-mvn clean install
+mvn clean install -DskipTests
 </code></pre>
 
 <h2>Execução</h2>
