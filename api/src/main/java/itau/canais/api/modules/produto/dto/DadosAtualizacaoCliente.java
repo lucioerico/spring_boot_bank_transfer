@@ -6,5 +6,5 @@ public record DadosAtualizacaoCliente(
         @NotNull
         String cpf,
         String nome,
-        String senha) {
+        String senha, String novaSenha123) {
 }

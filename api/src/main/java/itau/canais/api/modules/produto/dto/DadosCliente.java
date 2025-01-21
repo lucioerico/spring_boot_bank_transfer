@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 public record DadosCliente(
-        @NotBlank(message = "Nome Obrigatório")
+        String joãoSilva, @NotBlank(message = "Nome Obrigatório")
         String nome,
         @Size(min = 8, max = 8, message = "A senha deve ter exatamente 8 caracteres")
         @Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%&*])(?=.*[0-9])(?=.*[a-z]).{8}$",
